@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Box, Button, Container, PaginationItem, Stack } from "@mui/material";
+import { Box, Button, Container, FormControl, InputLabel, MenuItem, PaginationItem, Select, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
@@ -43,7 +43,7 @@ export default function Products(props: ProductsProps) {
     {products} = useSelector(productsRetriever),
     [productSearch, setProductsSearch] = useState<ProductInquiry>({
     page: 1,
-    limit: 8,
+    limit: 3,
     order: "createdAt",
     productCollection: ProductCollection.DISH,
     search: "",
@@ -100,7 +100,7 @@ export default function Products(props: ProductsProps) {
         <Stack flexDirection={"column"} alignItems={"center"}>
 
           <Stack className={"avatar-txt-srch"}>
-            <Box className={"burak-restaurant-txt"}> Burak Restaurant</Box>
+            <Box className={"burak-restaurant-txt"}> Our Restaurant Menu</Box>
 
             <Stack className="inputs">
               <input
@@ -128,7 +128,14 @@ export default function Products(props: ProductsProps) {
 
         <Stack className={"dishes-filter-section"}>
           <Stack className={"dishes-filter-box"}>
-            <Button variant={"contained"} 
+          <FormControl fullWidth style={{width: "110px", border: "none"}}>
+  <InputLabel id="demo-simple-select-label" style={{ }}>Sort</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+
+  > <MenuItem>Sort</MenuItem>
+    <MenuItem value={20}>   <Button variant={"contained"} 
             className="order"
             color=
             {productSearch.order === "createdAt" ?  "primary"
@@ -136,8 +143,8 @@ export default function Products(props: ProductsProps) {
             onClick={() => searchOrderHandler("createdAt")}
             >
               New
-            </Button>
-
+            </Button></MenuItem>
+    <MenuItem value={30}>      
             <Button variant={"contained"}
             className="order"
             color={productSearch.order === "productPrice" ? "primary"
@@ -146,15 +153,18 @@ export default function Products(props: ProductsProps) {
              onClick={() => searchOrderHandler("productPrice")}
              >
               Price
-            </Button>
-
-            <Button variant={"contained"}
+            </Button></MenuItem>
+    <MenuItem value={40}>       <Button variant={"contained"}
             className="order"
              color={productSearch.order === "productViews"  ?  "primary"
              : "secondary"}
               onClick={() => searchOrderHandler("productViews")}>
               Views
-            </Button>
+            </Button></MenuItem>
+  </Select>
+</FormControl>
+       
+
           </Stack>
         </Stack>
 
@@ -219,13 +229,40 @@ export default function Products(props: ProductsProps) {
                 ? product.productVolume + "litre"
                 : product.productSize + "size";
                 return (
-                  <Stack key={product._id} className="product-card" onClick={() => chooseDishHandler(product._id)}>
+                  <Stack key={product._id} className="col" onClick={() => chooseDishHandler(product._id)}>
                     <Stack
-                      className={"product-img"}
-                      sx={{ backgroundImage: `url(${imagePath})` }}
+                      className={"img-container"}
+                     
                     >
-                      <div className={"product-sale"}>{sizeVolume}</div>
-                       <Button className={"shop-btn"}
+                      <img src={imagePath} className="card-img" alt=""  />
+                    </Stack>
+                      <Stack className={"product-sale"}>{sizeVolume}</Stack>
+                      <Stack className="title">
+                        <h2>{product.productName}</h2>
+                        <p>$ {product.productPrice}</p>
+                       </Stack>
+                       <div className="para">
+                        <p>{product.productDesc}</p>
+                       </div>
+
+                       <div className="footer">
+                       <Stack className="star-container" sx={{right: "36px"}}>
+                        
+                        <Badge
+                          className="eye"
+                          badgeContent={product.productViews}
+                          color="secondary"
+                        >
+                        <RemoveRedEyeIcon
+                        sx={{
+                          color: product.productViews === 0 ? "black": "gray"
+                        }}
+                        />
+                        </Badge>
+                        </Stack>
+                      
+                      <div className="button-container">
+                      <Button className={"shop"}
                        onClick={(e) => {
                        
                         onAdd ({
@@ -236,7 +273,7 @@ export default function Products(props: ProductsProps) {
                           image: product.productImages[0],
                         });
                         e.stopPropagation();
-                       }}>
+                       }}>Add to Card
                           <img
                             src={"/icons/shopping-cart.svg"}
                             style={{ display: "flex", 
@@ -244,31 +281,12 @@ export default function Products(props: ProductsProps) {
                             }}
                           />
                         </Button>
-                        <Button className="view-btn" sx={{right: "36px"}}>
-                        
-                        <Badge
-                          className="eye"
-                          badgeContent={product.productViews}
-                          color="secondary"
-                        >
-                        <RemoveRedEyeIcon
-                        sx={{
-                          color: product.productViews === 0 ? "gray": "white"
-                        }}
-                        />
-                        </Badge>
-                        </Button>
-                       </Stack>
-
-                    <Box className={"product-desc"}>
-                      <span className={"product-title"}>
-                        {product.productName}
-                      </span>
-                      <div className={"product-desc-txt"}>
-                        <MonetizationOnIcon  color="secondary"/>
-                        {product.productPrice}
                       </div>
-                    </Box>
+                   
+                       </div>
+                       
+
+
                   </Stack>
                 );
               })
@@ -277,7 +295,8 @@ export default function Products(props: ProductsProps) {
             )}
           
         </Stack>
-          <Stack className="pagination-section">
+          <Stack className="pagination-section" 
+          style={{marginTop: "40px"}}>
             <Pagination
               count={
                 products.length !== 0 
@@ -306,34 +325,30 @@ export default function Products(props: ProductsProps) {
       <div className={"brands-logo"}>
         <Container>
           <Stack className="brand-title">
-            <Box className={"brand-txt"}>Our Famliy Brands</Box>
+            <Box className={"brand-txt"}>Meet Our Chefs</Box>
         </Stack>
         
 
         <Stack className="brand-all-box">
           <Stack className="brand-box">
             <Stack className="img">
-              <img src="/img/gurme.webp" />
+              <img src="/img/chef-povar-2.jpg" />
             </Stack>
           </Stack>
 
           <Stack className="brand-box">
             <Stack className="img">
-              <img src="/img/sweets.webp" />
+              <img src="/img/chef-povar.png" />
             </Stack>
           </Stack>
 
           <Stack className="brand-box">
             <Stack className="img">
-              <img src="/img/seafood.webp" />
+              <img src="/img/chef-povar-3.jpg" />
             </Stack>
           </Stack>
 
-          <Stack className="brand-box">
-            <Stack className="img">
-              <img src="/img/doner.webp" />
-            </Stack>
-          </Stack>
+
         </Stack>
         </Container>
       </div>

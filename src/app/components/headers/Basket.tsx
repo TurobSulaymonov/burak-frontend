@@ -161,7 +161,9 @@ export default function Basket(props: BasketProps) {
             <span className={"price"}>Total: ${totalPrice} ({itemsPrice} + {shippingCost})</span>
             <Button 
              onClick={proceedOrderHandler}
-            startIcon={<ShoppingCartIcon />} variant={"contained"}>
+            startIcon={<ShoppingCartIcon />} variant={"contained"} 
+            style={{background:"crimson"}}
+            >
               Order
             </Button>
           </Box>) : 

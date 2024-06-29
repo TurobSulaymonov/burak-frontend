@@ -14,6 +14,8 @@ import { ProductCollection } from "../../../lib/enums/product.enum";
 import MemberService from "../../services/MemberService";
 import { Member } from "../../../lib/types/member";
 import "../../../css/home.css";
+import OurClients from "./OurClients";
+import { CartItem } from "../../../lib/types/search";
 /* REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
@@ -21,8 +23,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
 
+interface HomePageProps {
+  onAdd: (item: CartItem) => void;
+ }
 
-export default function HomePage() {
+export default function HomePage(props: HomePageProps) {
+  const {onAdd} = props;
   const {setPopularDishes, setNewDishes, setTopUsers} = actionDispatch(useDispatch());
 
  
@@ -72,11 +78,13 @@ export default function HomePage() {
 
 
     return <div className={"homepage"}>
-      <Statistics/>
+     <Statistics/>
+     <NewDishes onAdd={onAdd}/>
       <PopularDishes />
-      <NewDishes/>
       <Advertisement />
       <ActiveUsers />
       <Events />
+      <OurClients/>
+      
     </div>;
   }

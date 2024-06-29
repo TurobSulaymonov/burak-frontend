@@ -130,11 +130,12 @@ const processOrderHandler = async (e: T) => {
                         <Button 
                           value={order._id}
                         variant="contained"
-                            color="secondary"
+                            style={{background:"#ff3030"}}
                             className={"cansel-button"}
                             onClick={deleteOrderHandler}
                             >Cansel</Button>
                              <Button 
+                             style={{background:"#c5d518"}}
                               value={order._id}
                               variant="contained"
                               className={"pay-button"}

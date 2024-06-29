@@ -2,7 +2,8 @@ import React from "react";
 
 export default function Advertisement() {
     return (
-        <div className="ads-restaurant-frame">
+        <div className="ads-restaurant-frame"
+        style={{marginTop:"60px"}}>
          <video 
          className={"ads-video"}
          autoPlay={true}
@@ -10,7 +11,7 @@ export default function Advertisement() {
          muted
          playsInline
          data-video-media="">
-            <source type="video/mp4" src="video/burak-ads.mp4" />
+            <source type="video/mp4" src="video/restar.mp4" />
          </video>
          </div>
     );

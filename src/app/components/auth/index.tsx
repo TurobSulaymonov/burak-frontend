@@ -144,10 +144,10 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
         <Fade in={signupOpen}>
           <Stack
             className={classes.paper}
-            direction={"row"}
-            sx={{ width: "800px" }}
+            direction={"row-reverse"}
+            sx={{ width: "900px", }}
           >
-            <ModalImg src={"/img/auth.webp"} alt="camera" />
+            <ModalImg src={"/img/sign-up.avif"} alt="camera" />
             <Stack sx={{ marginLeft: "69px", alignItems: "center" }}>
               <h2>Signup Form</h2>
               <TextField
@@ -203,7 +203,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
             direction={"row"}
             sx={{ width: "700px" }}
           >
-            <ModalImg src={"/img/auth.webp"} alt="camera" />
+            <ModalImg src={"/img/rasm_1.png"} alt="camera" />
             <Stack
               sx={{
                 marginLeft: "65px",

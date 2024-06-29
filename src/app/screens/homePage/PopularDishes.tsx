@@ -2,18 +2,25 @@ import React from "react";
 import { Box, Container, Stack } from "@mui/material";
 import {CssVarsProvider} from "@mui/joy/styles"
 import Card from '@mui/joy/Card';
-import CardCover from '@mui/joy/CardCover';
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import  CardOverflow  from "@mui/joy/CardOverflow";
-import  VisibilityIcon from "@mui/icons-material/Visibility";
-import  DescriptionOutlinedIcon  from "@mui/icons-material/DescriptionOutlined";
 
+/*  */
+import AspectRatio from '@mui/joy/AspectRatio';
+import Divider from '@mui/joy/Divider';
+import IconButton from '@mui/joy/IconButton';
+import Link from '@mui/joy/Link';
+import Favorite from '@mui/icons-material/Favorite';
+/*  */
 import {  useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrievePopularDishes } from "./selector";
 import { serverApi } from "../../../lib/config";
 import { Product } from "../../../lib/types/product";
+import { Height } from "@mui/icons-material";
+import { red } from "@mui/material/colors";
 
 
     // REDUX SLICE & SELECTOR 
@@ -36,59 +43,60 @@ export default function PopularDishes() {
                             const imagePath = `${serverApi}/${product.productImages[0]}`
                            return(
                              <CssVarsProvider key={product._id}>
-                                <Card className="card">
-                                    <CardCover>
-                                        <img src={imagePath} alt="" />
-                                    </CardCover>
-                                    <CardCover className={"card-cover"} />
-                                    <CardContent sx={{justifyContent: "flex-end"}}>
-                                        <Stack
-                                        flexDirection={"row"}
-                                        justifyContent={"space-between"}
-                                        >
-                                            <Typography
-                                            level="h2"
-                                            fontSize="lg"
-                                            textColor="#fff"
-                                            mb={1}
-                                            >
-                                                {product.productName}
-                                            </Typography>
-                                            <Typography
-                                            sx={{
-                                              fontWeight: "md",
-                                              color: "neutral.300",
-                                              alignItems: "center",
-                                              display: "flex",
-                                            }}>
-                                                {product.productViews}
-                                              <VisibilityIcon 
-                                              sx= {{
-                                                fontSize: "25", marginLeft: "5px"
-                                              }}
-                                               />
-                                            </Typography>
-                                        </Stack>
+  
+                                {/* test */}
+                                <Card variant="outlined" className={"card"} sx={{ width: 300,  gap:"20px"}}>
+      <CardOverflow>
+        <AspectRatio ratio="2">
+          <img
+            src={imagePath}
+            alt=""
+          />
+        </AspectRatio>
+        <IconButton
+          aria-label="Like minimal photography"
+          size="md"
+          variant="solid"
+          color="danger"
+          sx={{
+            position: 'absolute',
+            zIndex: 2,
+            borderRadius: '50%',
+            right: '1rem',
+            bottom: 0,
+            transform: 'translateY(50%)',
+          }}
+        >
+          <Favorite />
+        </IconButton>
+      </CardOverflow>
+      <CardContent>
+        <Typography level="title-md">
+          <Link href="#multiple-actions" overlay underline="none">
+         {product.productName}
+          </Link>
+        </Typography>
+        <Typography level={"body-sm"} style={{
+            width: 70,
+            height: 30,
+            border: 1,
+            color:"black"
+        }}>
+          <Link href="#multiple-actions">{product.productSize}</Link>
+        </Typography>
+      </CardContent>
+      <CardOverflow variant="soft">
+        <Divider inset="context" />
+        <CardContent orientation="horizontal">
+          <Typography level="body-xs">
+          <RemoveRedEyeIcon sx={{ mr: "10px" , mb:"-5px" }} />{product.productViews}</Typography>
+          <Divider orientation="vertical" />
+          <Typography level="body-xs">{product.productDesc}</Typography>
+        </CardContent>
+      </CardOverflow>
+    </Card>
 
-                                    </CardContent>
-                                    <CardOverflow
-                                    sx={{
-                                        display: "flex",
-                                        gap: 1.5,
-                                        py: 1.5,
-                                        px: "var(--Card-padding)",
-                                        borderTop: "1px solid",
-                                        height: "60px", 
-                                    }}
-                                    >
-                                     <Typography
-                                     startDecorator= {<DescriptionOutlinedIcon />}
-                                     textColor="neutral.300">
-                                     {product.productDesc}
-                                    </Typography>
-                                    </CardOverflow>
-                                    
-                                </Card>
+                              
                              </CssVarsProvider>
                            );
                         })

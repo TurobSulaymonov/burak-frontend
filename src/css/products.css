@@ -76,7 +76,7 @@
     text-align: center;
     cursor: pointer;
     background-color: rgb(48, 41, 41);
-    color: #d7b586;
+    color: #fff;
    
   }
   
@@ -141,21 +141,106 @@
 
   }
   
-  .products  .products-wrapper .product-card {
-    width: 250px;
-    height: 400px;
-    border-top-left-radius: 25px;
-  }
+  .col {
+  width: 350px;
+  height: 480px;
+  border-top-left-radius: 25px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.75), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: 0.4s all ease-in-out;
+}
+
+.col:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 10px 10px rgba(0, 0, 0, 0.23);
+  transform: translate(0px, 8px);
+}
+
+ .col .imgContainer {
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top-right-radius: 35px;
+
+}
+
+
+
+.card-img{
+  width: 100%;
+  height: 150px;
+}
+
+
+
+.col .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+.col .title h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.col .title p {
+  color: crimson;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.col .para {
+  width: 80%;
+  display: flex;
+  padding: 5px 20px;
+  color: rgba(0, 0, 0, 0.67);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  margin: 5px 0 20px;
+}
+
+.footer .star-container ul {
+  list-style: none;
+  display: flex;
+}
+
+.footer .star-container ul li {
+  margin: 0 2.5px;
+  color: #ccc;
+}
+
+.footer .star-container .checked {
+  color: crimson;
+}
+
+
+ .button-container .shop{
+  background-color: white;
+  outline: none;
+  border: none;
+  color: #3c3c3c;
+  font-weight: 600;
+  padding: 12px 22px;
+  transition: 0.3s all ease-in;
+}
+
+.button-container  .shop:hover {
+  background-color: red;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
   
-  .products  .products-wrapper .product-card .product-img {
-    width: 273px;
-    height: 275px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-top-right-radius: 35px;
-  }
-  
-  .products-page .products .products-wrapper .product-card
+  .products-page .products .products-wrapper .col
   .product-sale {
   width: 90px;
   height: 30px;
@@ -187,7 +272,7 @@
   display: none;
   bottom: 10px;
 }
-.products .products-wrapper .product-card .view-btn {
+.products .products-wrapper .footer .view-btn {
   width: 40px;
   height: 38px;
   border-radius: 75%;
@@ -204,14 +289,7 @@
   border-radius: 0px 50px 0px 0px;
   position: relative;
 }
-.products .products-wrapper .product-card .product-img:hover .shop-btn {
-  display: block;
-}
 
-.products .products-wrapper .product-card .product-img:hover .view-btn {
-  display: block;
-  filter: brightness(90%);
-}
  
   .products  .products-wrapper .product-card .product-desc {
     display: flex;
@@ -246,6 +324,7 @@
   }
   
   .products  .pagination-section {
+
      display: flex;
     justify-content: center;
     align-items: center;
@@ -255,8 +334,8 @@
 
   
   .products .brands-logo {
-    margin-top: 10px;
-   width: 100%;
+    margin-top: -15%;
+    width: 100%;
    height: 640px;
    background: rgb(18, 18, 18);
   }
@@ -264,7 +343,7 @@
   .products .brands-logo .brand-title .brand-txt{
     margin-top: 30px;
     font-size: 30px;
-    color: #d7b586;
+    color: #fff;
     text-align: center;
     font-family: "Poppins";
     font-weight: 700;
@@ -318,8 +397,9 @@
   
   .products-page .chosen-product .product-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 80px;
     margin-bottom: 150px;
   }
@@ -351,6 +431,7 @@
   }
   
   .products-page .chosen-product .chosen-product-info {
+    margin-top: 40px;
     padding: 30px 40px;
     width: 49%;
     height: 480px;
@@ -469,6 +550,9 @@
     color: #f8f8ff;
   }
   
+  .products-page .chosen-product .button-box button:hover{
+    background: crimson;
+  }
   .products-page .chosen-product .title {
     font-family: "Dancing Script";
     font-style: normal;
