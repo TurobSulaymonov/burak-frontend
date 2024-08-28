@@ -29,9 +29,9 @@ export default function Statistics () {
                  </Stack>
                  <Stack className="static-number">
                
-                        <Box className={"static-num"}>12</Box>
+                        <Box className={"static-num"}>12+</Box>
                         <Box className={"static-text"}>Quality Food<img src="/img/range.png" width={25} height={25}/></Box>
-                        <Box className={"static-num"}>8</Box>
+                        <Box className={"static-num"}>8+</Box>
                         <Box className={"static-text"}>Experience <img src="/img/experince.png" width={25} height={25}/></Box>
                         <Box className={"static-num"}>50+</Box>
                         <Box className={"static-text"}>Our Menu <img src="/img/dish.png" width={25} height={25}/></Box>
